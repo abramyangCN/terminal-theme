@@ -107,13 +107,13 @@
             "style": "plain",
             "foreground": "lightRed",
             "properties": {
-              "prefix": "",
-              "text": "🕸 $",
+              "prefix": "↪ ",
+              "text": "$",
               "postfix": ""
             }
           }
         ]
       }
     ],
-    "final_space": false
+    "final_space": true
   }
