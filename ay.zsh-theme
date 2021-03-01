@@ -11,7 +11,7 @@ AY_VCS_PROMPT_PREFIX1=" %{$fg[white]%}on%{$reset_color%} "
 AY_VCS_PROMPT_PREFIX2=":%{$terminfo[bold]$fg[cyan]%}"
 AY_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 AY_VCS_PROMPT_DIRTY=" %{$fg[red]%}🔥"
-AY_VCS_PROMPT_CLEAN=" %{$fg[green]%}🤗"
+AY_VCS_PROMPT_CLEAN=" %{$fg[green]%}👌"
 
 # Git info
 local git_info='$(git_prompt_info)'
