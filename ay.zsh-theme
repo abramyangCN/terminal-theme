@@ -20,6 +20,7 @@ local git_commit_hash='$(git_commit_hash)'
 local git_info='$(git_prompt_info)'
 git_commit_hash() {
   if [ -d .git ]; then
+    echo -n " # %{$terminfo[bold]$fg[blue]%}"
     git rev-parse HEAD | cut -c -8
   fi
 }
@@ -136,8 +137,7 @@ PROMPT="
 %{$terminfo[bold]$fg[yellow]%}%~%{$reset_color%}\
 ${hg_info}\
 ${git_info}\
-%{ # $terminfo[bold]$fg[blue]%}${git_commit_hash}\
- \
+${git_commit_hash} \
 ${time_info}\
 ${exit_code}
 💻 ${osx_info} ${battery_info} ${network_info} ${node_info} ${python_info}
