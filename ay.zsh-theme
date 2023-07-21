@@ -93,7 +93,7 @@ ay_network_prompt_info() {
   if [ "$(networksetup -getairportnetwork en0 | grep -o 'AirPort')" ]; then
     echo -n "🈳️"
   else
-    echo -n "🛜  %{$terminfo[bold]$fg[cyan]%}"
+    echo -n "🛜 %{$terminfo[bold]$fg[cyan]%}"
     echo -n "$(networksetup -getairportnetwork en0 | cut -c 24-)"
     echo -n "$AY_VCS_PROMPT_SUFFIX"
   fi
@@ -140,6 +140,5 @@ ${git_info}\
  \
 ${time_info}\
 ${exit_code}
+💻 ${osx_info} ${battery_info} ${network_info} ${node_info} ${python_info}
 🐠 %{$terminfo[bold]$fg[magenta]%}$ %{$reset_color%}"
-
-RPROMPT="💻 ${osx_info} ${battery_info} ${network_info} ${node_info} ${python_info}"
