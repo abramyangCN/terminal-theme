@@ -20,7 +20,7 @@ local git_commit_hash='$(git_commit_hash)'
 local git_info='$(git_prompt_info)'
 git_commit_hash() {
   if [ -d .git ]; then
-    echo -n " # %{$terminfo[bold]$fg[blue]%}"
+    echo -n "%{$fg[white]%} # %{$terminfo[bold]$fg[blue]%}"
     git rev-parse HEAD | cut -c -8
   fi
 }
