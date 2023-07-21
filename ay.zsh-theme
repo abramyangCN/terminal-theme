@@ -50,7 +50,8 @@ ay_hg_prompt_info() {
 local node_info='$(ay_node_prompt_info)'
 ay_node_prompt_info() {
   # make sure this is a node dir
-  if [ -f 'package.json' ]; then
+  # if [[ $PWD =~ ^"$HOME/Workspace"(/|$) ]]; then
+  if [[ $PWD == "$HOME/Workspace"* ]]; then
     echo -n "node:%{$terminfo[bold]$fg[cyan]%}"
     echo -n $(node -v 2>/dev/null)
     echo -n "$AY_VCS_PROMPT_SUFFIX"
@@ -61,9 +62,11 @@ ay_node_prompt_info() {
 local python_info='$(ay_python_prompt_info)'
 ay_python_prompt_info() {
   # make sure this is a python dir
-  echo -n "python:%{$terminfo[bold]$fg[cyan]%}v"
-  echo -n "$(python --version 2>&1 | awk '{print $2}')"
-  echo -n "$AY_VCS_PROMPT_SUFFIX"
+  if [[ $PWD == "$HOME/Workspace"* ]]; then
+    echo -n "python:%{$terminfo[bold]$fg[cyan]%}v"
+    echo -n "$(python --version 2>&1 | awk '{print $2}')"
+    echo -n "$AY_VCS_PROMPT_SUFFIX"
+  fi
 }
 
 # Mac OS X version
