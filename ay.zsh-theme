@@ -46,36 +46,36 @@ ay_hg_prompt_info() {
 	fi
 }
 
-# Node info
-local node_info='$(ay_node_prompt_info)'
-ay_node_prompt_info() {
-  # make sure this is a node dir
-  # if [[ $PWD =~ ^"$HOME/Workspace"(/|$) ]]; then
-  if [[ $PWD == "$HOME/Workspace"* ]]; then
-    echo -n "node:%{$terminfo[bold]$fg[cyan]%}"
-    echo -n $(node -v 2>/dev/null)
-    echo -n "$AY_VCS_PROMPT_SUFFIX"
-  fi
-}
+# # Node info
+# local node_info='$(ay_node_prompt_info)'
+# ay_node_prompt_info() {
+#   # make sure this is a node dir
+#   # if [[ $PWD =~ ^"$HOME/Workspace"(/|$) ]]; then
+#   if [[ $PWD == "$HOME/Workspace"* ]]; then
+#     echo -n "node:%{$terminfo[bold]$fg[cyan]%}"
+#     echo -n $(node -v 2>/dev/null)
+#     echo -n "$AY_VCS_PROMPT_SUFFIX"
+#   fi
+# }
 
-# Python info
-local python_info='$(ay_python_prompt_info)'
-ay_python_prompt_info() {
-  # make sure this is a python dir
-  if [[ $PWD == "$HOME/Workspace"* ]]; then
-    echo -n "python:%{$terminfo[bold]$fg[cyan]%}v"
-    echo -n "$(python --version 2>&1 | awk '{print $2}')"
-    echo -n "$AY_VCS_PROMPT_SUFFIX"
-  fi
-}
+# # Python info
+# local python_info='$(ay_python_prompt_info)'
+# ay_python_prompt_info() {
+#   # make sure this is a python dir
+#   if [[ $PWD == "$HOME/Workspace"* ]]; then
+#     echo -n "python:%{$terminfo[bold]$fg[cyan]%}v"
+#     echo -n "$(python --version 2>&1 | awk '{print $2}')"
+#     echo -n "$AY_VCS_PROMPT_SUFFIX"
+#   fi
+# }
 
 # Mac OS X version
-local osx_info='$(ay_osx_prompt_info)'
-ay_osx_prompt_info() {
-  echo -n "macOS:%{$terminfo[bold]$fg[cyan]%}v"
-  echo -n "$(sw_vers -productVersion)"
-  echo -n "$AY_VCS_PROMPT_SUFFIX"
-}
+# local osx_info='$(ay_osx_prompt_info)'
+# ay_osx_prompt_info() {
+#   echo -n "macOS:%{$terminfo[bold]$fg[cyan]%}v"
+#   echo -n "$(sw_vers -productVersion)"
+#   echo -n "$AY_VCS_PROMPT_SUFFIX"
+# }
 
 # Battery info
 local battery_info='$(ay_battery_prompt_info)'
@@ -135,13 +135,14 @@ PROMPT="
 🐏%{$terminfo[bold]$fg[blue]%}%{$reset_color%} \
 %(#,%{$terminfo[bold]$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$terminfo[bold]$fg[cyan]%}%n%{$reset_color%}) \
 %{$fg[white]%}@ \
-%{$terminfo[bold]$fg[green]%}%m %{$reset_color%}\
+%{$terminfo[bold]$fg[green]%}%m%{$reset_color%} \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}%~%{$reset_color%}\
 ${hg_info}\
 ${git_info}\
 ${git_commit_hash} \
-${time_info}\
+${time_info} \
 ${exit_code}
-💻 ${osx_info} ${battery_info} ${network_info} ${node_info} ${python_info}
 🐠 %{$terminfo[bold]$fg[magenta]%}$ %{$reset_color%}"
+# ${node_info} ${python_info} 💻 ${osx_info} 
+RPROMPT="${battery_info} ${network_info}"
