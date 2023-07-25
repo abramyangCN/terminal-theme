@@ -19,10 +19,12 @@ AY_VCS_PROMPT_CLEAN=" %{$fg[green]%}👌"
 local git_commit_hash='$(git_commit_hash)'
 local git_info='$(git_prompt_info)'
 git_commit_hash() {
-  if [ -d .git ]; then
-    echo -n "%{$fg[white]%} # %{$terminfo[bold]$fg[blue]%}"
-    git rev-parse HEAD | cut -c -8
-  fi
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+      if git log -n 1 >/dev/null 2>&1; then
+        echo -n "%{$fg[white]%} # %{$terminfo[bold]$fg[blue]%}"
+        echo -n "$(git rev-parse --short HEAD)"
+      fi
+    fi
 }
 ZSH_THEME_GIT_PROMPT_PREFIX="${AY_VCS_PROMPT_PREFIX1}git${AY_VCS_PROMPT_PREFIX2}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$AY_VCS_PROMPT_SUFFIX"
